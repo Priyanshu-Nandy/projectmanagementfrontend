@@ -4,12 +4,12 @@ import axios from 'axios';
 import AdminProjects from '../components/AdminComp/AdminProjects';
 import { useNavigate } from 'react-router-dom';
 const Admin = () => {
-  const [date,setDate]=useState([])
+  
+
     const [applications, setApplications] = useState([])
     const [projects,setProjects]=useState([])
     const [facultyList,setFacultyLists]=useState([])
   const navigate = useNavigate();
-
 // For fetching signin access token
   async function accesstokenFetch() {
         const response = await axios.post(
@@ -23,10 +23,7 @@ const Admin = () => {
         );
       localStorage.setItem("access_token",response.data.accessToken)
       }
-
-      // For fetching applications
-      useEffect(() => {
-        const fetchApplications = async () => {
+              const fetchApplications = async () => {
           try {
             const response = await axios.get('http://localhost:3000/projectRoutes/getallapplications', {
               headers: {
@@ -35,13 +32,20 @@ const Admin = () => {
             });
             setApplications(response.data); // Store the fetched data in the state variable
             console.log(response.data)
+            console.log(localStorage.getItem("access_token"))
           } catch (err) {
             console.log(err)
           } 
         };
+      useEffect(() => {
+        accesstokenFetch()
+      });
+      // For fetching applications
+      useEffect(() => {
+
     
         fetchApplications();
-      }, []);
+      }, [setApplications]);
   
       // To get projects 
       useEffect(() => {
@@ -59,15 +63,9 @@ const Admin = () => {
         };
     
         fetchProjects();
-      }, []);
+      }, [setProjects]);
 
-    useEffect(() => {
-      accesstokenFetch()
-      setInterval(()=>{
-      
-        accesstokenFetch();
-      },5400000)
-    });
+
     useEffect(() => {
       const fetchFaculty = async () => {
         try {
@@ -89,6 +87,7 @@ const Admin = () => {
       setProjects(projects.filter(project => project._id !== projectId));
       console.log("Working")
     };
+
   return (
     <div className='w-full h-full relative flex flex-col items-center justify-center'>
         <div className=' w-full'>
@@ -102,6 +101,7 @@ const Admin = () => {
           description={application.project_name}
           date= {application.appliedAt}
           studentId={application.studentId}
+          applicationId={application._id}
         />
         
       ))}

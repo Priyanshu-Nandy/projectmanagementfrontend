@@ -54,7 +54,7 @@ function App() {
   return (
     <Routes>
       <Route path="/admin" element={<AdminDashboard />} />
-      <Route path="/admin-dashboard/:studentId" element={<AdminDashboard1 />} />
+      {/* <Route path="/admin-dashboard/:studentId" element={<AdminDashboard1 />} /> */}
       <Route path="/Project-form" element={<ProjectForm />} />
       <Route path="/student-dashboard" element={<StudentDashboard/>}/>
       <Route path="/" element={<Admin/>}/>

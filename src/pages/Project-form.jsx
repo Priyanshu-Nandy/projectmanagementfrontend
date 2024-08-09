@@ -68,7 +68,7 @@ console.log(formData);
         requirements: "",
         faculty_list:""
       });
-      navigate("/admin")
+      navigate("/")
     } catch (error) {
       console.error("Error submitting form:", error.response.data);
       setResponseMessage("");
@@ -136,7 +136,6 @@ console.log(formData);
               value={formData.expiryTime}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
-              min={currentTime}
               required
             />
           </div>
