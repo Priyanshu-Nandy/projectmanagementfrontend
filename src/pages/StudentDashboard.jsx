@@ -3,12 +3,13 @@ import React, { useEffect,useState } from 'react'
 import { CurrentProjectCard } from '../components/StudentComp/CurrentProjectCard'
 import axios from "axios"
 import NewProjects from '../components/StudentComp/NewProjects'
+import { useNavigate } from 'react-router-dom'
 const StudentDashboard = () => {
   const [newprojects,setNewProjects]=useState([])
   const [allProject,setAllProjects]=useState([])
   const [facultyList,setFacultyLists]=useState([])
   const [studentList,setStudentList]=useState([])
-  const [filteredProjects,setFilteredProjects]=useState([])
+  const navigate=useNavigate()
   async function accesstokenFetch() {
     const response = await axios.post(
       import.meta.env.VITE_BACKEND_URL +
@@ -103,8 +104,18 @@ useEffect(() => {
   fetchAllStudents()
 }, []);
   return (
+    
     <div className='bg-whitesmoke w-[100vw] min-h-[100vh] relative'>
       <div className='px-10 py-10'>
+        <div className='flex items-center justify-between'>
+          <h1>Student</h1>
+          <div className='flex gap-5'>
+            <button className='border-blue-400 border-2 px-5 py-3 rounded-md text-black text-xl'>Student</button>
+            <img className="w-14 h-14 rounded-[50%] object-cover cursor-pointer" src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+            onClick={()=>navigate("/profile")}
+            />
+          </div>
+        </div>
         <h2>Current Project</h2>
         <div className='flex gap-5 flex-wrap'>
         {newprojects.map((newproject,index)=>(

@@ -1,6 +1,9 @@
 import React from 'react'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { FaRegEdit } from "react-icons/fa";
 const AdminProjects = ({title,description,tags,facultyId,facultyList,projectId,onDelete}) => {
+  const navigate=useNavigate()
   const facultyMap = facultyList.reduce((acc, faculty) => {
     acc[faculty._id] = faculty.name;
     return acc;
@@ -27,6 +30,9 @@ const AdminProjects = ({title,description,tags,facultyId,facultyList,projectId,o
       throw error;
     }
   };
+  const edit=()=>{
+    navigate(`/edit/${projectId}`);
+  }
   return (
     <div className=" rounded-xl border cross bg-white relative px-5 py-5 flex items-start gap-2 mb-5">
                         <span className='bg-white cursor-pointer' onClick={deleteProject}>
@@ -64,6 +70,7 @@ const AdminProjects = ({title,description,tags,facultyId,facultyList,projectId,o
      
       </div>
         </div>
+        <FaRegEdit className='w-10 h-10 text-blue-600 bg-transparent cursor-pointer'onClick={edit}/>
       </div>
   )
 }

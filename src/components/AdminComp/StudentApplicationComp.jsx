@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react'
 import useFormatData from '../../hooks/useFormatDate'
 import { useNavigate } from 'react-router-dom'
 import AdminDashboard1 from '../../pages/AdminDashboard1'
-import axios from 'axios'
 const StudentApplication = ({title,description,date,studentId,applicationId}) => {
   const formattedDate=useFormatData(date)
   const [popUp, setPopUp] = useState(false)
   const navigate=useNavigate()
-  // const handleViewClick = (studentId) => {
-  //   navigate(`/admin-dashboard/${studentId}`);
-  // };
+ 
 
   return (
     <div className='w-full flex items-center justify-center'>
@@ -34,8 +31,6 @@ const StudentApplication = ({title,description,date,studentId,applicationId}) =>
           {formattedDate}
             </div>         
           <button className='flex w-[10%] gap-11 items-center justify-center h-10 text-xl cursor-pointer bg-blue-500 text-white rounded-md' onClick={()=>setPopUp(true)}>
-
-          {/* onClick={()=>handleViewClick(studentId)} */}
           View
             </button>
             

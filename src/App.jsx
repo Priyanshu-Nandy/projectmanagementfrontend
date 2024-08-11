@@ -10,7 +10,8 @@ import AdminDashboard1 from "./pages/AdminDashboard1";
 import ProjectForm from "./pages/Project-form";
 import StudentDashboard from "./pages/StudentDashboard";
 import Admin from "./pages/Admin";
-
+import EditForm from "./pages/EditForm";
+import Profile from "./pages/Profile"
 function App() {
   const action = useNavigationType();
   const location = useLocation();
@@ -54,9 +55,10 @@ function App() {
   return (
     <Routes>
       <Route path="/admin" element={<AdminDashboard />} />
-      {/* <Route path="/admin-dashboard/:studentId" element={<AdminDashboard1 />} /> */}
+      <Route path="/edit/:projectId" element={<EditForm />} />
       <Route path="/Project-form" element={<ProjectForm />} />
       <Route path="/student-dashboard" element={<StudentDashboard/>}/>
+      <Route path="/profile" element={<Profile/>}/>
       <Route path="/" element={<Admin/>}/>
     </Routes>
   );
