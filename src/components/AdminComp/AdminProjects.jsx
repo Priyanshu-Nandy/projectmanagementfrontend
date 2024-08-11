@@ -60,7 +60,7 @@ const AdminProjects = ({title,description,tags,facultyId,facultyList,projectId,o
         <div className='flex flex-col flex-wrap gap-3 bg-blue-200 min-w-[20vw] h-[12vh] px-5 py-4 rounded-xl'>
       {selectedFacultyNames.length > 0 ? (
             selectedFacultyNames.map((name, index) => (
-              <p className='bg-blue-600 px-4 py-3 rounded-md text-white h-4 w-[8vw]' key={index}>
+              <p className='bg-blue-600 px-6 py-3 rounded-md text-white h-4 w-[8vw]' key={index}>
                 {name}
               </p>
             ))

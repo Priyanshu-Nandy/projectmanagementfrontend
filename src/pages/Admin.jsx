@@ -11,18 +11,7 @@ const Admin = () => {
     const [facultyList,setFacultyLists]=useState([])
   const navigate = useNavigate();
 // For fetching signin access token
-  async function accesstokenFetch() {
-        const response = await axios.post(
-          import.meta.env.VITE_BACKEND_URL +
-            "facultyRoutes/signin",
-           {
-                "employee_id":"100000", 
-                "password":"Deepan@1234"
-              
-            }
-        );
-      localStorage.setItem("access_token",response.data.accessToken)
-      }
+  
               const fetchApplications = async () => {
           try {
             const response = await axios.get('http://localhost:3000/projectRoutes/getallapplications', {
@@ -37,9 +26,7 @@ const Admin = () => {
             console.log(err)
           } 
         };
-      useEffect(() => {
-        accesstokenFetch()
-      });
+      
       // For fetching applications
       useEffect(() => {
 
@@ -92,7 +79,16 @@ const Admin = () => {
   return (
     <div className='w-full h-full relative flex flex-col items-center justify-center'>
         <div className=' w-full'>
-        <h1 className='px-10 mb-10 text-17xl font-normal'>MANAGEMENT</h1>
+        <div className='flex items-center justify-between'>
+          <h1>Managment</h1>
+          <div className='flex gap-5'>
+            <button className='border-blue-400 border-2 px-5 py-3 rounded-md text-black text-xl'>Faculty</button>
+            <img className="w-14 h-14 rounded-[50%] object-cover cursor-pointer" src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+            onClick={()=>navigate("/facultyProfile")}
+            />
+          </div>
+        </div>
+        
         <h3 className='px-10 text-10xl font-semibold'>Student Applications</h3>
         </div>
         {applications.map((application, index) => (

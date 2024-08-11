@@ -10,35 +10,35 @@ const StudentDashboard = () => {
   const [facultyList,setFacultyLists]=useState([])
   const [studentList,setStudentList]=useState([])
   const navigate=useNavigate()
-  async function accesstokenFetch() {
-    const response = await axios.post(
-      import.meta.env.VITE_BACKEND_URL +
-        "facultyRoutes/signin",
-       {
-            "employee_id":"100000", 
-            "password":"Deepan@1234"
+//   async function accesstokenFetch() {
+//     const response = await axios.post(
+//       import.meta.env.VITE_BACKEND_URL +
+//         "facultyRoutes/signin",
+//        {
+//             "employee_id":"100000", 
+//             "password":"Deepan@1234"
           
-        }
-    );
-    // console.log(response.data.accessToken)
-  localStorage.setItem("access_token",response.data.accessToken)
-  }
-  async function studentaccesstokenFetch() {
-    const response = await axios.post(
-      import.meta.env.VITE_BACKEND_URL +
-        "studentsRoutes/signin",
-        {
-          "password":"Priyanshu@1234",
-          "enrollment_no":"12021002019060"
-        }
-    );
-    // console.log(response.data.accessToken)
-  localStorage.setItem("student_token",response.data.accessToken)
-  }
-useEffect(() => {
-  accesstokenFetch()
-  studentaccesstokenFetch()
-}); 
+//         }
+//     );
+//     // console.log(response.data.accessToken)
+//   localStorage.setItem("access_token",response.data.accessToken)
+//   }
+//   async function studentaccesstokenFetch() {
+//     const response = await axios.post(
+//       import.meta.env.VITE_BACKEND_URL +
+//         "studentsRoutes/signin",
+//         {
+//           "password":"Priyanshu@1234",
+//           "enrollment_no":"12021002019060"
+//         }
+//     );
+//     // console.log(response.data.accessToken)
+//   localStorage.setItem("student_token",response.data.accessToken)
+//   }
+// useEffect(() => {
+//   accesstokenFetch()
+//   studentaccesstokenFetch()
+// }); 
 useEffect(() => {
   const fetchAllProjects = async () => {
     try {
@@ -112,7 +112,7 @@ useEffect(() => {
           <div className='flex gap-5'>
             <button className='border-blue-400 border-2 px-5 py-3 rounded-md text-black text-xl'>Student</button>
             <img className="w-14 h-14 rounded-[50%] object-cover cursor-pointer" src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-            onClick={()=>navigate("/profile")}
+            onClick={()=>navigate("/studentProfile")}
             />
           </div>
         </div>

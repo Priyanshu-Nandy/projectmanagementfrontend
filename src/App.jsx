@@ -6,13 +6,18 @@ import {
   useLocation,
 } from "react-router-dom";
 import AdminDashboard from "./pages/AdminDashboard";
-import AdminDashboard1 from "./pages/AdminDashboard1";
 import ProjectForm from "./pages/Project-form";
 import StudentDashboard from "./pages/StudentDashboard";
 import Admin from "./pages/Admin";
 import EditForm from "./pages/EditForm";
-import Profile from "./pages/Profile"
+import StudentProfile from "./pages/StudentProfile";
+import FacultyProfile from "./pages/FacultyProfile";
+import FacultySignUp from "./pages/FacultySignUp/FacultySignUp";
+import StudentSignUp from "./pages/StudentSignUp/StudentSignUp";
+import FacultyLogin from "./pages/FacultyLogin/FacultyLogin";
+import StudentLogin from "./pages/StudentLogin/StudentLogin";
 function App() {
+  
   const action = useNavigationType();
   const location = useLocation();
   const pathname = location.pathname;
@@ -58,7 +63,13 @@ function App() {
       <Route path="/edit/:projectId" element={<EditForm />} />
       <Route path="/Project-form" element={<ProjectForm />} />
       <Route path="/student-dashboard" element={<StudentDashboard/>}/>
-      <Route path="/profile" element={<Profile/>}/>
+      <Route path="/studentProfile" element={<StudentProfile/>}/>
+      <Route path="/facultyProfile" element={<FacultyProfile/>}/>
+
+      <Route path="/studentSignUp" element={<StudentSignUp/>}/>
+      <Route path="/facultySignUp" element={<FacultySignUp/>}/>
+      <Route path="/facultyLogin" element={<FacultyLogin/>}/>
+      <Route path="/studentLogin" element={<StudentLogin/>}/>
       <Route path="/" element={<Admin/>}/>
     </Routes>
   );

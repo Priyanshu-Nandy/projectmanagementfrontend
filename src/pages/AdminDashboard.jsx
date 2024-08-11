@@ -7,6 +7,15 @@ const AdminDashboard = () => {
     <div className="w-full relative bg-whitesmoke overflow-hidden flex flex-col items-end justify-start pt-[26px] pb-[225px] pr-[68px] pl-14 box-border gap-[52px] leading-[normal] tracking-[normal] mq900:gap-[26px] mq1275:pl-7 mq1275:pr-[34px] mq1275:box-border">
       <header className="self-stretch flex flex-row items-start justify-between gap-[20px] text-left text-11xl text-black font-inter">
         <div className="flex flex-col items-start justify-start pt-[11px] px-0 pb-0">
+        <div className='flex items-center justify-between'>
+          <h1>Student</h1>
+          <div className='flex gap-5'>
+            <button className='border-blue-400 border-2 px-5 py-3 rounded-md text-black text-xl'>Student</button>
+            <img className="w-14 h-14 rounded-[50%] object-cover cursor-pointer" src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+            onClick={()=>navigate("/studentProfile")}
+            />
+          </div>
+        </div>
           <a className="[text-decoration:none] relative font-medium text-[inherit] whitespace-nowrap">
             MANAGEMENT
           </a>

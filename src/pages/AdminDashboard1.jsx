@@ -118,7 +118,7 @@ const AdminDashboard1 = ({setPopUp,show,studentId,title,applicationId}) => {
           Reject
             </button> 
         </div>
-        <ImCross color="white" className="bg-red-500 px-3 py-3 rounded-[50%] absolute top-0 right-0 hover:cursor-pointer" onClick={()=>setPopUp(false)}  / >
+        <ImCross color="white" className="px-2 py-2 rounded-[50%] bg-red-500  absolute top-0 right-0 hover:cursor-pointer" onClick={()=>setPopUp(false)}  / >
       </div>
       <div className="h-[30vh] w-[100%] flex items-center bg-white gap-10 mt-20">
       <img className="w-72 h-full rounded-[60%] object-cover" src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
