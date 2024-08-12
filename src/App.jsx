@@ -70,7 +70,7 @@ function App() {
       <Route path="/facultySignUp" element={<FacultySignUp/>}/>
       <Route path="/facultyLogin" element={<FacultyLogin/>}/>
       <Route path="/studentLogin" element={<StudentLogin/>}/>
-      <Route path="/" element={<Admin/>}/>
+      <Route path="/admin-dashboard" element={<Admin/>}/>
     </Routes>
   );
 }

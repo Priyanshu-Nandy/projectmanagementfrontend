@@ -68,7 +68,7 @@ console.log(formData);
         requirements: "",
         faculty_list:""
       });
-      navigate("/")
+      navigate("/admin-dashboard")
     } catch (error) {
       console.error("Error submitting form:", error.response.data);
       setResponseMessage("");

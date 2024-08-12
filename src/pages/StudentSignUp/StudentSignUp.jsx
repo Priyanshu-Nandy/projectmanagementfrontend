@@ -503,7 +503,7 @@ const StudentSignUp = () => {
       alert(
         "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
       );
-      alert("Registration successful")
+      
       return;
     }
     console.log("HElloooeoeoeo");
@@ -537,6 +537,7 @@ const StudentSignUp = () => {
         const responseData = await response.json();
         setalertButtonText("proceed to dashboard");
         sessionStorage.setItem("accessToken", responseData.accessToken);
+        navigate("/studentLogin")
       } else if (response.status === 409) {
         setisLoading(false);
         // setalertLottie(ErrorLottie);

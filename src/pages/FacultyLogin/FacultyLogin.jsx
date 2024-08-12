@@ -28,7 +28,7 @@ const FacultyLogin = () => {
     );
     console.log(response.data)
     localStorage.setItem("access_token",response.data.accessToken)
-    navigate("/")
+    navigate("/admin-dashboard")
   }
   return (
     <div className="Container overflow-hidden w-[100vw] h-[100vh]">
