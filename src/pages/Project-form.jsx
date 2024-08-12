@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useCurrentDate from "../hooks/useCurrentDate";
 import useCurrentTime from "../hooks/useCurrentTime";
@@ -7,6 +7,25 @@ import useProjectDuration from "../hooks/useProjectDuration";
 import { useNavigate } from "react-router-dom";
 function ProjectForm() {
   const navigate = useNavigate();
+  const [id,setId]=useState("")
+  useEffect(() => {
+    const fetchFacultyProflie = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/facultyRoutes/facultyProfile', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`
+          }
+        });
+         // Store the fetched data in the state variable
+        console.log(response.data)
+       setId(response.data._id)
+      } catch (err) {
+        console.log(err)
+      } 
+    };
+
+    fetchFacultyProflie();
+  }, []);
   const [formData, setFormData] = useState({
     project_name: "",
     launchDate: "",
@@ -17,7 +36,7 @@ function ProjectForm() {
     projectDuration: "",
     description: "",
     requirements: "",
-    faculty_list:[]
+    faculty_list:[id]
   });
    const currentDate=useCurrentDate()
   const currentTime=useCurrentTime()
@@ -40,11 +59,21 @@ function ProjectForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const defaultId = id; // Replace with your actual default faculty ID
+    const updatedFacultyList = formData.faculty_list.length === 0 
+      ? [defaultId] 
+      : formData.faculty_list;
+  
+    // Prepare the data to be sent to the API
+    const dataToSend = {
+      ...formData,
+      faculty_list: updatedFacultyList
+    };
 console.log(formData);
     try {
       const response = await axios.post(
         "http://localhost:3000/projectRoutes/createProject",
-        formData,
+        dataToSend,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -66,7 +95,7 @@ console.log(formData);
         projectDuration: "",
         description: "",
         requirements: "",
-        faculty_list:""
+        faculty_list:[]
       });
       navigate("/admin-dashboard")
     } catch (error) {
@@ -99,7 +128,7 @@ console.log(formData);
               name="project_name"
               value={formData.project_name}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
+              className="w-[98%] px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
               required
             />
           </div>

@@ -536,6 +536,7 @@ const FacultySignUp = () => {
         const responseData = await response.json();
         setalertButtonText("proceed to dashboard");
         sessionStorage.setItem("accessToken", responseData.accessToken);
+        navigate("/facultyLogin")
       } else if (response.status === 409) {
         setisLoading(false);
         // setalertLottie(ErrorLottie);

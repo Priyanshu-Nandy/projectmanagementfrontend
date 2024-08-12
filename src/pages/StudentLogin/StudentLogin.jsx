@@ -54,7 +54,7 @@ const StudentLogin = () => {
             className={`Input border-2 border-red-500" `}
             type="number"
             name="enrollment_no"
-            placeholder="100001"
+            placeholder="21021002019054"
             value={formData.enrollment_no}
             onChange={handleChange}
             required

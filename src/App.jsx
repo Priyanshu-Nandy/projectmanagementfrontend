@@ -16,6 +16,7 @@ import FacultySignUp from "./pages/FacultySignUp/FacultySignUp";
 import StudentSignUp from "./pages/StudentSignUp/StudentSignUp";
 import FacultyLogin from "./pages/FacultyLogin/FacultyLogin";
 import StudentLogin from "./pages/StudentLogin/StudentLogin";
+import MainDashboard from "./pages/MainDashboad";
 function App() {
   
   const action = useNavigationType();
@@ -59,6 +60,8 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/" element={<MainDashboard />} />
+
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/edit/:projectId" element={<EditForm />} />
       <Route path="/Project-form" element={<ProjectForm />} />

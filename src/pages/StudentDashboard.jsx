@@ -9,7 +9,26 @@ const StudentDashboard = () => {
   const [allProject,setAllProjects]=useState([])
   const [facultyList,setFacultyLists]=useState([])
   const [studentList,setStudentList]=useState([])
+  const [studentName,setStudentName]=useState("")
   const navigate=useNavigate()
+  useEffect(() => {
+    const fetchFacultyProflie = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/studentsRoutes/studentProfile', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("student_token")}`
+          }
+        });
+         // Store the fetched data in the state variable
+        console.log(response.data)
+       setStudentName(response.data.name)
+      } catch (err) {
+        console.log(err)
+      } 
+    };
+  
+    fetchFacultyProflie();
+  }, []);
 //   async function accesstokenFetch() {
 //     const response = await axios.post(
 //       import.meta.env.VITE_BACKEND_URL +
@@ -108,9 +127,9 @@ useEffect(() => {
     <div className='bg-whitesmoke w-[100vw] min-h-[100vh] relative'>
       <div className='px-10 py-10'>
         <div className='flex items-center justify-between'>
-          <h1>Student</h1>
+          <h1>{studentName}</h1>
           <div className='flex gap-5'>
-            <button className='border-blue-400 border-2 px-5 py-3 rounded-md text-black text-xl'>Student</button>
+            <button className='border-blue-400 border-2 px-5 py-3 rounded-md text-black text-xl'>{studentName}</button>
             <img className="w-14 h-14 rounded-[50%] object-cover cursor-pointer" src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
             onClick={()=>navigate("/studentProfile")}
             />

@@ -7,11 +7,29 @@ const Admin = () => {
   
 
     const [applications, setApplications] = useState([])
+    const [facultyName,setFacultyName]=useState("")
     const [projects,setProjects]=useState([])
     const [facultyList,setFacultyLists]=useState([])
   const navigate = useNavigate();
 // For fetching signin access token
-  
+useEffect(() => {
+  const fetchFacultyProflie = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/facultyRoutes/facultyProfile', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`
+        }
+      });
+       // Store the fetched data in the state variable
+      console.log(response.data)
+     setFacultyName(response.data.name)
+    } catch (err) {
+      console.log(err)
+    } 
+  };
+
+  fetchFacultyProflie();
+}, []);
               const fetchApplications = async () => {
           try {
             const response = await axios.get('http://localhost:3000/projectRoutes/getallapplications', {
@@ -82,7 +100,7 @@ const Admin = () => {
         <div className='flex items-center justify-between'>
           <h1>Managment</h1>
           <div className='flex gap-5'>
-            <button className='border-blue-400 border-2 px-5 py-3 rounded-md text-black text-xl'>Faculty</button>
+            <button className='border-blue-400 border-2 px-5 py-3 rounded-md text-black text-xl'>{facultyName}</button>
             <img className="w-14 h-14 rounded-[50%] object-cover cursor-pointer" src="https://plus.unsplash.com/premium_photo-1671656349218-5218444643d8?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
             onClick={()=>navigate("/facultyProfile")}
             />
