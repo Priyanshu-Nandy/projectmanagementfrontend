@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import "./StudentLogin.css";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Importing icons
+
 import axios from "axios";
 const StudentLogin = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+  const togglePasswordVisibility = () => {
+      setIsPasswordVisible(prevState => !prevState);
+    };
   const [formData, setFormData] = useState({
     enrollment_no: '',
     password:''
@@ -65,15 +71,27 @@ const StudentLogin = () => {
           >
             Password:
           </div>
+          <div className="flex">
           <input
-            className= "border-2 border-red-500"
-            type="password"
+            className= "border-2 border-red-500 w-full"
+            type={isPasswordVisible?"password":"text"}
             name="password"
             placeholder="*********"
             value={formData.password}
             onChange={handleChange}
             required
           />
+               <button
+        type="button"
+        onClick={togglePasswordVisibility}
+      >
+        {isPasswordVisible ? (
+          <FaEyeSlash className="text-gray-500" />
+        ) : (
+          <FaEye className="text-gray-500" />
+        )}
+      </button>
+          </div>
           
           <div className="Submit-Row pt-4">
             <div className="flex flex-col">
@@ -86,9 +104,9 @@ const StudentLogin = () => {
                 </span>
               </div>
             </div>
-            <div className="Button my-auto">
+            <div>
               
-                <button
+                <button className="cursor-pointer px-4 py-4 bg-blue-500 text-white"
                  onClick={accesstokenFetch}
                 >
                   Login

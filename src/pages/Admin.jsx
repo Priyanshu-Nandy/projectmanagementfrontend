@@ -10,6 +10,7 @@ const Admin = () => {
     const [facultyName,setFacultyName]=useState("")
     const [projects,setProjects]=useState([])
     const [facultyList,setFacultyLists]=useState([])
+  const [studentList,setStudentList]=useState([])
   const navigate = useNavigate();
 // For fetching signin access token
 useEffect(() => {
@@ -21,7 +22,7 @@ useEffect(() => {
         }
       });
        // Store the fetched data in the state variable
-      console.log(response.data)
+      // console.log(response.data)
      setFacultyName(response.data.name)
     } catch (err) {
       console.log(err)
@@ -80,7 +81,7 @@ useEffect(() => {
               Authorization: `Bearer ${localStorage.getItem("access_token")}`
             }
           });
-          setFacultyLists(response.data); // Store the fetched data in the state variable
+          // setFacultyLists(response.data); // Store the fetched data in the state variable
           // console.log(response.data)
         } catch (err) {
           console.log(err)
@@ -93,7 +94,23 @@ useEffect(() => {
       setProjects(projects.filter(project => project._id !== projectId));
       console.log("Working")
     };
-
+    const fetchAllStudents = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/studentsRoutes/getAllStudents', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("student_token")}`
+          }
+        });
+         // Store the fetched data in the state variable
+         setStudentList(response.data)
+        console.log(response.data)
+      } catch (err) {
+        console.log(err)
+      } 
+    };
+    useEffect(()=>{
+      fetchAllStudents()
+    },[])
   return (
     <div className='w-full h-full relative flex flex-col items-center justify-center'>
         <div className=' w-full'>
@@ -123,13 +140,18 @@ useEffect(() => {
         <h3 className='pl-44 text-10xl font-semibold  w-full'>Your Projects</h3>
         {projects.map((project, index) => (
         <AdminProjects 
-          key={index}
-          title={project.project_name}
+        key={index}
+        title={project.project_name}
+        launchDate={project.launchDate}
+        requirement={project.requirements}
           description={project.description}
           tags={project.requirements}
           facultyId={project.faculty_list}
           facultyList={facultyList}
           projectId={project._id}
+          studentList={studentList}
+          studentId={project.studentTeam}
+          githubLink={project.githubLink}
           onDelete={handleDelete}
         />
         

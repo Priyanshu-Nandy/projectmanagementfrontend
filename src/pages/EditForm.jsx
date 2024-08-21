@@ -15,7 +15,7 @@ function EditForm() {
     launchTime: "",
     status: "",
     expiryDate: "",
-    expiryTime: "",
+    githubLink: "",
     projectDuration: "",
     description: "",
     requirements: "",
@@ -40,7 +40,7 @@ function EditForm() {
     launchTime: "",
     status: "Upcoming",
     expiryDate: response.data.expiryDate,
-    expiryTime: "",
+    githubLink: response.data.githubLink,
     projectDuration: "",
     description: response.data.description,
     requirements: response.data.requirements,
@@ -124,7 +124,7 @@ console.log(formData);
             <label
               htmlFor="project_name"
               className="block text-gray-700 font-bold mb-2"
-              onClick={()=>console.log(formData)}
+              
             >
               Project Name
             </label>
@@ -135,7 +135,7 @@ console.log(formData);
               value={formData.project_name}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
-              required
+              
             />
           </div>
           <div className="mb-4">
@@ -153,7 +153,7 @@ console.log(formData);
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
               min={currentDate}
-              required
+              
             />
           </div>
 
@@ -162,16 +162,15 @@ console.log(formData);
               htmlFor="expiryTime"
               className="block text-gray-700 font-bold mb-2"
             >
-              Expiry Time
+            Github Link
             </label>
             <input
-              type="time"
-              id="expiryTime"
-              name="expiryTime"
-              value={formData.expiryTime}
+              type="text"
+              id="githubLink"
+              name="githubLink"
+              value={formData.githubLink}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
-              required
             />
           </div>
 
@@ -194,7 +193,7 @@ console.log(formData);
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
               rows="4"
-              required
+             
             ></textarea>
           </div>
 
@@ -212,7 +211,7 @@ console.log(formData);
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-500"
               rows="4"
-              required
+              
             ></textarea>
           </div>
 

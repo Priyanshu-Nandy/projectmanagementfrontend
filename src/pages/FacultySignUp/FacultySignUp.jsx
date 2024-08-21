@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./FacultyLogin.css";
 // import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Importing icons
+
 // // import Alert from "../AlertBox/Alert";
 // import SuccessLottie from "../../Lottie/success.json";
 // import ErrorLottie from "../../Lottie/Error.json";
@@ -10,6 +12,10 @@ import { useNavigate } from "react-router-dom";
 // import Lottie from "react-lottie";
 
 const FacultySignUp = () => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+  const togglePasswordVisibility = () => {
+      setIsPasswordVisible(prevState => !prevState);
+    };
   const navigate = useNavigate();
 
   const [employee_id, setEnroll] = useState("");
@@ -480,7 +486,7 @@ const FacultySignUp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log("Hello")
     if (enrollError) {
       alert("Please enter a 6-digit Employee ID");
       return;
@@ -533,6 +539,7 @@ const FacultySignUp = () => {
         setisLoading(false);
         // setalertLottie(SuccessLottie);
         setPopupMessage("successful");
+        console.log("Hello")
         const responseData = await response.json();
         setalertButtonText("proceed to dashboard");
         sessionStorage.setItem("accessToken", responseData.accessToken);
@@ -746,6 +753,7 @@ const FacultySignUp = () => {
           >
             Password:
           </div>
+          <div className="flex">
           <input
             className={`Input ${
               passwordError.lengthError ||
@@ -756,11 +764,22 @@ const FacultySignUp = () => {
                 ? "border-2 border-red-500"
                 : ""
             }`}
-            type="password"
+            type={isPasswordVisible ? "password" : "text"}
             placeholder="*********"
             value={password}
             onChange={handlePasswordChange}
           />
+               <button
+        type="button"
+        onClick={togglePasswordVisibility}
+      >
+        {isPasswordVisible ? (
+          <FaEyeSlash className="text-gray-500" />
+        ) : (
+          <FaEye className="text-gray-500" />
+        )}
+      </button>
+          </div>
           {passwordError.lengthError && (
             <span className="Error text-gray-600">
               * Password must be at least 8 characters long.
@@ -800,13 +819,13 @@ const FacultySignUp = () => {
                 </span>
               </div>
             </div>
-            <div className="Button my-auto">
+            <div>
               {isLoading ? (
                 <div className="LoadingAnimation z-50 border-2 border-[#3466FF] rounded-md">
                   {/* <Lottie options={defaultOptions} height={48} width={120} /> */}
                 </div>
               ) : (
-                <button
+                <button 
                   onClick={handleSubmit}
                   className={`${
                     IsformFilled &&
@@ -821,8 +840,8 @@ const FacultySignUp = () => {
                     !passwordError.lowercaseError &&
                     verifyOtp &&
                     verifyOtpEmail // Check if phone number is verified
-                      ? "bg-[#3466FF] border-2 text-white py-3 px-12 rounded-lg text-[15px] z-10 hover:bg-transparent hover:text-[#3466FF] hover:border-2 hover:border-[#3466FF] duration-200"
-                      : "border-gray-400 text-gray-400 cursor-not-allowed border-2 py-3 px-12 rounded-lg text-[15px] z-10 "
+                      ? "bg-[#3466FF] border-2 text-white py-3 px-12 rounded-lg text-[15px] z-10 hover:bg-transparent hover:text-[#3466FF] hover:border-2 hover:border-[#3466FF] duration-200 cursor-pointer"
+                      : "border-gray-400 text-gray-400 cursor-not-allowed border-2 py-3 px-12 rounded-lg text-[15px] z-10"
                   }`}
                   disabled={
                     !IsformFilled ||

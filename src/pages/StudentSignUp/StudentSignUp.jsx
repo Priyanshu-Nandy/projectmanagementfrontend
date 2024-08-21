@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./StudentLogin.css";
 // import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Importing icons
 // // import Alert from "../AlertBox/Alert";
 // import SuccessLottie from "../../Lottie/success.json";
 // import ErrorLottie from "../../Lottie/Error.json";
@@ -50,7 +51,10 @@ const StudentSignUp = () => {
     numberError: false,
     lowercaseError: false,
   });
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
+  const togglePasswordVisibility = () => {
+      setIsPasswordVisible(prevState => !prevState);
+    };
   // const [userData, setUserData] = useState({
   //   name: "",
   //   email: "",
@@ -479,7 +483,7 @@ const StudentSignUp = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log("Hey")
     if (enrollError) {
       alert("Please enter a 14-digit enrollment number");
       return;
@@ -747,6 +751,7 @@ const StudentSignUp = () => {
           >
             Password:
           </div>
+          <div className="flex">
           <input
             className={`Input ${
               passwordError.lengthError ||
@@ -757,11 +762,22 @@ const StudentSignUp = () => {
                 ? "border-2 border-red-500"
                 : ""
             }`}
-            type="password"
+            type={isPasswordVisible ? "password" : "text"}
             placeholder="*********"
             value={password}
             onChange={handlePasswordChange}
           />
+               <button
+        type="button"
+        onClick={togglePasswordVisibility}
+      >
+        {isPasswordVisible ? (
+          <FaEyeSlash className="text-gray-500" />
+        ) : (
+          <FaEye className="text-gray-500" />
+        )}
+      </button>
+          </div>
           {passwordError.lengthError && (
             <span className="Error text-gray-600">
               * Password must be at least 8 characters long.
@@ -805,7 +821,7 @@ const StudentSignUp = () => {
 
               </div>
             </div>
-            <div className="Button my-auto">
+            <div>
   {isLoading ? (
     <div className="LoadingAnimation z-50 border-2 border-[#3466FF] rounded-md">
       {/* <Lottie options={defaultOptions} height={48} width={120} /> */}
@@ -825,16 +841,16 @@ const StudentSignUp = () => {
           ? "bg-[#3466FF] border-2 text-white py-3 px-12 rounded-lg text-[15px] z-10 hover:bg-transparent hover:text-[#3466FF] hover:border-2 hover:border-[#3466FF] duration-200"
           : "border-gray-400 text-gray-400 cursor-not-allowed border-2 py-3 px-12 rounded-lg text-[15px] z-10"
       }`}
-      disabled={
-        !IsformFilled ||
-        passwordError.lengthError ||
-        passwordError.uppercaseError ||
-        passwordError.specialCharError ||
-        passwordError.numberError ||
-        passwordError.lowercaseError ||
-        !verifyOtp ||
-        !verifyOtpEmail
-      }
+      // disabled={
+      //   !IsformFilled ||
+      //   passwordError.lengthError ||
+      //   passwordError.uppercaseError ||
+      //   passwordError.specialCharError ||
+      //   passwordError.numberError ||
+      //   passwordError.lowercaseError ||
+      //   !verifyOtp ||
+      //   !verifyOtpEmail
+      // }
     >
       Register
     </button>

@@ -143,6 +143,14 @@ useEffect(() => {
           title={newproject.project_name}
           launchDate={newproject.launchDate}
           requirement={newproject.requirements}
+            description={newproject.description}
+            tags={newproject.requirements}
+            facultyId={newproject.faculty_list}
+            facultyList={facultyList}
+            projectId={newproject._id}
+            studentList={studentList}
+            studentId={newproject.studentTeam}
+            githubLink={newproject.githubLink}
           />
         ))}
         </div>
@@ -161,6 +169,7 @@ useEffect(() => {
             projectId={project._id}
             studentList={studentList}
             studentId={project.studentTeam}
+            
           />
           
         ))
